@@ -6,6 +6,15 @@ Stamply is a mobile travel passport app prototype built with **Expo + React Nati
 
 browse city → unlock stamp (dev mode) → generate image (Nano Banana or mock fallback) → save locally → render in Passport → post to local Feed
 
+## Reliability Hardening
+
+- Safe local-state hydration (corrupt cache won't crash startup)
+- Automatic recovery for stale `generating` stamps after app restart
+- Retry image generation from Stamp Detail
+- Regenerate stamp variant from Stamp Detail
+- Prevent duplicate unlocked-stamp feed posts
+- Trip recap local post flow with image provider fallback
+
 ## Tech
 
 - React Native + Expo

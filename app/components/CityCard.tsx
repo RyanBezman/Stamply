@@ -25,7 +25,15 @@ export const CityCard = ({
         <View style={styles.topRow}>
           <Text style={styles.city}>{city.name}</Text>
           <View style={[styles.badge, unlocked ? styles.badgeReady : styles.badgeLocked]}>
-            <Text style={styles.badgeText}>{unlocked ? (stamp?.status === 'ready' ? 'Unlocked' : 'Generating') : 'Locked'}</Text>
+            <Text style={styles.badgeText}>
+              {unlocked
+                ? stamp?.status === 'ready'
+                  ? 'Unlocked'
+                  : stamp?.status === 'failed'
+                    ? 'Retry needed'
+                    : 'Generating'
+                : 'Locked'}
+            </Text>
           </View>
         </View>
         <Text style={styles.country}>{city.country}</Text>
