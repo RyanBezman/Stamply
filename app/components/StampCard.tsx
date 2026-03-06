@@ -1,7 +1,8 @@
 import React from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { theme } from '../theme';
 import { CityPlace, Stamp } from '../types';
+import { FadeInImage } from './FadeInImage';
 import { Skeleton } from './Skeleton';
 
 export const StampCard = ({
@@ -26,7 +27,7 @@ export const StampCard = ({
             </View>
           </View>
         ) : stamp?.imageUrl ? (
-          <Image source={{ uri: stamp.imageUrl }} style={styles.image} />
+          <FadeInImage uri={stamp.imageUrl} style={styles.image} />
         ) : (
           <View style={[styles.image, styles.locked]}>
             <Text style={styles.lockedText}>{stamp?.status === 'failed' ? 'Generation failed' : 'No image yet'}</Text>

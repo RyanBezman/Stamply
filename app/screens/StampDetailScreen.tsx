@@ -1,8 +1,9 @@
 import { RouteProp, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { useAppStore } from '../hooks/useAppStore';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FadeInImage } from '../components/FadeInImage';
 import { Skeleton } from '../components/Skeleton';
+import { useAppStore } from '../hooks/useAppStore';
 import { RootStackParamList } from '../types/navigation';
 import { theme } from '../theme';
 
@@ -39,7 +40,7 @@ export const StampDetailScreen = () => {
           </View>
         </View>
       ) : stamp.imageUrl ? (
-        <Image source={{ uri: stamp.imageUrl }} style={styles.image} />
+        <FadeInImage uri={stamp.imageUrl} style={styles.image} duration={260} />
       ) : (
         <View style={styles.image} />
       )}
