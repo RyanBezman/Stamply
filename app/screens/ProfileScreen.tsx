@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   avatarText: { fontSize: 34 },
-  name: { color: 'white', fontWeight: '800', fontSize: 24, marginTop: 14 },
+  name: { color: theme.colors.text, fontWeight: '800', fontSize: 24, marginTop: 14 },
   bio: { color: '#94a3b8', marginTop: 4, marginBottom: 18 },
   stats: { width: '100%', flexDirection: 'row', gap: 8 },
   statCard: {

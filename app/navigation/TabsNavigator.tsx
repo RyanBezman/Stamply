@@ -24,8 +24,8 @@ export const TabsNavigator = () => {
         headerTintColor: theme.colors.text,
         headerShadowVisible: false,
         tabBarStyle: {
-          backgroundColor: '#060d1a',
-          borderTopColor: '#1b2940',
+          backgroundColor: '#f7fbff',
+          borderTopColor: '#dbeafe',
           height: 74,
           paddingTop: 8,
           paddingBottom: 10,

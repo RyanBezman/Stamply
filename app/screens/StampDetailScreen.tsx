@@ -43,8 +43,8 @@ export const StampDetailScreen = () => {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: theme.colors.bg, padding: 16 },
-  image: { width: '100%', aspectRatio: 1, borderRadius: 20, backgroundColor: '#1f2937' },
-  title: { color: 'white', fontSize: 30, fontWeight: '800', marginTop: 14 },
+  image: { width: '100%', aspectRatio: 0.75, borderRadius: 20, backgroundColor: '#dbeafe' },
+  title: { color: theme.colors.text, fontSize: 30, fontWeight: '800', marginTop: 14 },
   sub: { color: '#cbd5e1', fontSize: 18, marginTop: 2 },
   metaBox: {
     marginTop: 14,

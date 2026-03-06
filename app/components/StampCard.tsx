@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
   image: { width: '100%', aspectRatio: 1, borderRadius: 10, backgroundColor: '#1f2937' },
   locked: { alignItems: 'center', justifyContent: 'center' },
   lockedText: { color: '#9ca3af', fontWeight: '700' },
-  name: { color: 'white', marginTop: 8, fontWeight: '700' },
+  name: { color: theme.colors.text, marginTop: 8, fontWeight: '700' },
   sub: { color: '#9ca3af', fontSize: 12, textTransform: 'capitalize' },
 });

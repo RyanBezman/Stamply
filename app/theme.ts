@@ -1,15 +1,15 @@
 export const theme = {
   colors: {
-    bg: '#040711',
-    surface: '#0b1220',
-    surfaceSoft: '#111b2d',
-    border: '#1b2940',
-    text: '#f8fafc',
-    textMuted: '#94a3b8',
+    bg: '#eaf4ff',
+    surface: '#ffffff',
+    surfaceSoft: '#f3f8ff',
+    border: '#cfe3f7',
+    text: '#0f172a',
+    textMuted: '#5b6b82',
     accent: '#f59e0b',
     accentSoft: '#fbbf24',
-    success: '#34d399',
-    danger: '#f87171',
+    success: '#10b981',
+    danger: '#ef4444',
   },
   radius: {
     lg: 20,

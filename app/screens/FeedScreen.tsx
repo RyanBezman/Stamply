@@ -22,7 +22,7 @@ export const FeedScreen = () => {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: theme.colors.bg },
   content: { padding: 16 },
-  title: { color: 'white', fontSize: 30, fontWeight: '800' },
+  title: { color: theme.colors.text, fontSize: 30, fontWeight: '800' },
   subtitle: { color: '#94a3b8', marginTop: 4, marginBottom: 12 },
   empty: { color: '#9ca3af' },
 });

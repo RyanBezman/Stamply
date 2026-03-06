@@ -39,7 +39,7 @@ export const PassportScreen = () => {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: theme.colors.bg },
   content: { padding: 16 },
-  title: { color: 'white', fontSize: 30, fontWeight: '800' },
+  title: { color: theme.colors.text, fontSize: 30, fontWeight: '800' },
   counterWrap: {
     marginTop: 10,
     marginBottom: 12,

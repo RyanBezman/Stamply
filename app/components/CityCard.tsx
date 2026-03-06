@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
     borderRadius: theme.radius.lg,
     borderWidth: 1,
     borderColor: theme.colors.border,
-    marginBottom: 14,
+    marginBottom: 16,
     overflow: 'hidden',
   },
   hero: {
-    height: 170,
-    justifyContent: 'flex-end',
+    height: 320,
+    justifyContent: 'space-between',
     padding: 14,
   },
   heroImage: {
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(2, 6, 23, 0.45)',
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
   },
   topRow: {
     flexDirection: 'row',
@@ -75,16 +75,16 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   city: {
-    color: theme.colors.text,
-    fontSize: 23,
+    color: '#0f172a',
+    fontSize: 24,
     fontWeight: '800',
     maxWidth: '70%',
   },
   country: {
-    color: '#dbeafe',
+    color: '#334155',
     marginTop: 4,
     fontSize: 15,
-    fontWeight: '600',
+    fontWeight: '700',
     zIndex: 1,
   },
   badge: {
@@ -92,9 +92,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 4,
   },
-  badgeReady: { backgroundColor: 'rgba(16, 185, 129, 0.22)' },
-  badgeLocked: { backgroundColor: 'rgba(30, 41, 59, 0.75)' },
-  badgeText: { color: theme.colors.text, fontSize: 11, fontWeight: '700' },
+  badgeReady: { backgroundColor: 'rgba(16, 185, 129, 0.18)' },
+  badgeLocked: { backgroundColor: 'rgba(15, 23, 42, 0.14)' },
+  badgeText: { color: '#0f172a', fontSize: 11, fontWeight: '800' },
   actions: {
     padding: 14,
     paddingTop: 12,

@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     padding: 14,
     marginBottom: 12,
   },
-  text: { color: 'white', fontWeight: '600', fontSize: 16, lineHeight: 21 },
+  text: { color: theme.colors.text, fontWeight: '600', fontSize: 16, lineHeight: 21 },
   meta: { color: '#9ca3af', fontSize: 12, marginTop: 6 },
   row: { flexDirection: 'row', marginTop: 10, gap: 8 },
   commentRow: { flexDirection: 'row', marginTop: 10, gap: 8 },

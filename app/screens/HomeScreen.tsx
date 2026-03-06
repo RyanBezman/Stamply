@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: theme.colors.bg },
   content: { padding: 16 },
   kicker: {
-    color: '#93c5fd',
+    color: '#2563eb',
     fontSize: 12,
     fontWeight: '800',
     letterSpacing: 1.5,
     marginTop: 2,
   },
-  title: { color: theme.colors.text, fontSize: 30, fontWeight: '800', marginTop: 8 },
+  title: { color: theme.colors.text, fontSize: 32, fontWeight: '800', marginTop: 8 },
   subtitle: { color: theme.colors.textMuted, marginTop: 6, marginBottom: 14, lineHeight: 21 },
   statsRow: { flexDirection: 'row', gap: 10, marginBottom: 10 },
   statCard: {

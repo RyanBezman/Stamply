@@ -7,10 +7,12 @@ interface ImageProvider {
   regenerateVariant(stampId: string): Promise<string>;
 }
 
-const buildPollinationsUrl = (prompt: string, seed: string) => {
+const buildPollinationsUrl = (prompt: string, seed: string, size: 'square' | 'portrait' = 'portrait') => {
   const encodedPrompt = encodeURIComponent(prompt);
   const encodedSeed = encodeURIComponent(seed);
-  return `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&seed=${encodedSeed}&nologo=true`;
+  const width = size === 'portrait' ? 1024 : 1024;
+  const height = size === 'portrait' ? 1536 : 1024;
+  return `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${width}&height=${height}&seed=${encodedSeed}&nologo=true`;
 };
 
 export const buildCityPreviewImage = (place: CityPlace) => {
@@ -18,8 +20,8 @@ export const buildCityPreviewImage = (place: CityPlace) => {
     return place.previewImageUrl;
   }
 
-  const previewPrompt = `cinematic travel postcard of ${place.name}, ${place.country}, iconic skyline and landmarks, moody lighting, premium mobile app background, no text`;
-  return buildPollinationsUrl(previewPrompt, `${place.slug}-preview`);
+  const previewPrompt = `premium 3D miniature diorama of ${place.name}, ${place.country}, iconic landmarks, full-frame city model, clean light sky-blue background, soft daylight, highly detailed, no clouds, no text`;
+  return buildPollinationsUrl(previewPrompt, `${place.slug}-preview`, 'portrait');
 };
 
 const mockProvider: ImageProvider = {
