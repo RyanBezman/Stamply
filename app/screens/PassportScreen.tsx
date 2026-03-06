@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { PassportSkeleton } from '../components/PassportSkeleton';
 import { StampCard } from '../components/StampCard';
 import { useAppStore } from '../hooks/useAppStore';
 import { theme } from '../theme';
@@ -11,12 +12,7 @@ export const PassportScreen = () => {
   const unlocked = stamps.length;
 
   if (!hydrated) {
-    return (
-      <View style={styles.loadingWrap}>
-        <ActivityIndicator size="large" color={theme.colors.accent} />
-        <Text style={styles.loadingText}>Loading passport stamps...</Text>
-      </View>
-    );
+    return <PassportSkeleton />;
   }
 
   return (
@@ -89,12 +85,4 @@ const styles = StyleSheet.create({
   },
   emptyTitle: { color: theme.colors.text, fontSize: 16, fontWeight: '800' },
   emptyText: { color: theme.colors.textMuted, marginTop: 6 },
-  loadingWrap: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: theme.colors.bg,
-    gap: 10,
-  },
-  loadingText: { color: theme.colors.textMuted, fontWeight: '600' },
 });

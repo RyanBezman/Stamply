@@ -1,6 +1,7 @@
 import React from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { FeedPostCard } from '../components/FeedPostCard';
+import { FeedSkeleton } from '../components/FeedSkeleton';
 import { useAppStore } from '../hooks/useAppStore';
 import { theme } from '../theme';
 
@@ -8,12 +9,7 @@ export const FeedScreen = () => {
   const { feedPosts, likePost, addComment, createTripRecapPost, stamps, hydrated } = useAppStore();
 
   if (!hydrated) {
-    return (
-      <View style={styles.loadingWrap}>
-        <ActivityIndicator size="large" color={theme.colors.accent} />
-        <Text style={styles.loadingText}>Loading feed...</Text>
-      </View>
-    );
+    return <FeedSkeleton />;
   }
 
   return (
@@ -66,12 +62,4 @@ const styles = StyleSheet.create({
   },
   emptyTitle: { color: theme.colors.text, fontSize: 16, fontWeight: '800', marginBottom: 6 },
   empty: { color: '#9ca3af' },
-  loadingWrap: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: theme.colors.bg,
-    gap: 10,
-  },
-  loadingText: { color: theme.colors.textMuted, fontWeight: '600' },
 });
