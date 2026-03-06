@@ -1,0 +1,12 @@
+[
+  {"id":"nyc","name":"New York","country":"USA","slug":"new-york","promptSeed":"Skyline energy and urban iconography","landmarkKeywords":["Statue of Liberty","Empire State Building","Brooklyn Bridge"],"themeKeywords":["city lights","urban","golden hour"]},
+  {"id":"par","name":"Paris","country":"France","slug":"paris","promptSeed":"Romantic boulevards and timeless architecture","landmarkKeywords":["Eiffel Tower","Louvre Pyramid","Seine River"],"themeKeywords":["romantic","elegant","sunset"]},
+  {"id":"tyo","name":"Tokyo","country":"Japan","slug":"tokyo","promptSeed":"Neon modernity and tradition","landmarkKeywords":["Tokyo Tower","Shibuya Crossing","Senso-ji Temple"],"themeKeywords":["neon","futuristic","night"]},
+  {"id":"rom","name":"Rome","country":"Italy","slug":"rome","promptSeed":"Ancient grandeur and piazza life","landmarkKeywords":["Colosseum","Trevi Fountain","St. Peter's Basilica"],"themeKeywords":["historic","warm stone","golden light"]},
+  {"id":"ldn","name":"London","country":"UK","slug":"london","promptSeed":"Royal heritage and modern skyline","landmarkKeywords":["Big Ben","Tower Bridge","London Eye"],"themeKeywords":["classic","moody sky","riverfront"]},
+  {"id":"lax","name":"Los Angeles","country":"USA","slug":"los-angeles","promptSeed":"Palm boulevards and cinematic glow","landmarkKeywords":["Hollywood Sign","Santa Monica Pier","Griffith Observatory"],"themeKeywords":["sunset","palm trees","cinematic"]},
+  {"id":"bcn","name":"Barcelona","country":"Spain","slug":"barcelona","promptSeed":"Gaudí curves and Mediterranean charm","landmarkKeywords":["Sagrada Família","Park Güell","Barceloneta"],"themeKeywords":["colorful","mediterranean","artistic"]},
+  {"id":"mia","name":"Miami","country":"USA","slug":"miami","promptSeed":"Art deco coast and tropical nightlife","landmarkKeywords":["South Beach","Ocean Drive","Downtown skyline"],"themeKeywords":["tropical","vibrant","neon pastel"]},
+  {"id":"ams","name":"Amsterdam","country":"Netherlands","slug":"amsterdam","promptSeed":"Canal houses and bike culture","landmarkKeywords":["Canal Ring","Rijksmuseum","Dam Square"],"themeKeywords":["canals","cozy","historic"]},
+  {"id":"dxb","name":"Dubai","country":"UAE","slug":"dubai","promptSeed":"Desert luxury and iconic skyline","landmarkKeywords":["Burj Khalifa","Palm Jumeirah","Dubai Marina"],"themeKeywords":["luxury","desert glow","futuristic"]}
+]
