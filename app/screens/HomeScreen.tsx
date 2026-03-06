@@ -22,7 +22,7 @@ export const HomeScreen = () => {
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <Text style={styles.kicker}>STAMPLY</Text>
       <Text style={styles.title}>Collect beautiful city stamps</Text>
-      <Text style={styles.subtitle}>Unlock a city, generate a miniature world, and save it in your passport.</Text>
+      <Text style={styles.subtitle}>Unlock a city in dev mode, generate a collectible miniature world, and save it to your passport.</Text>
 
       <View style={styles.statsRow}>
         <View style={styles.statCard}>

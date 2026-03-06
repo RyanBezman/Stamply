@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { theme } from '../theme';
 import { FeedPost } from '../types';
 
@@ -13,12 +13,36 @@ export const FeedPostCard = ({
   onComment: (text: string) => void;
 }) => {
   const [text, setText] = useState('');
+  const appear = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(appear, {
+      toValue: 1,
+      duration: 220,
+      useNativeDriver: true,
+    }).start();
+  }, [appear]);
 
   const postTypeLabel =
     post.type === 'trip_recap' ? 'Trip Recap' : post.type === 'milestone' ? 'Milestone' : 'Stamp Unlock';
 
   return (
-    <View style={styles.card}>
+    <Animated.View
+      style={[
+        styles.card,
+        {
+          opacity: appear,
+          transform: [
+            {
+              translateY: appear.interpolate({
+                inputRange: [0, 1],
+                outputRange: [10, 0],
+              }),
+            },
+          ],
+        },
+      ]}
+    >
       <View style={styles.headerRow}>
         <Text style={styles.typeBadge}>{postTypeLabel}</Text>
         <Text style={styles.meta}>{new Date(post.createdAt).toLocaleString()}</Text>
@@ -61,7 +85,7 @@ export const FeedPostCard = ({
           <Text style={styles.btnText}>Post</Text>
         </Pressable>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

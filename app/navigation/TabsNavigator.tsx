@@ -1,6 +1,6 @@
+import { FontAwesome6, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { Text } from 'react-native';
 import { FeedScreen } from '../screens/FeedScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import { PassportScreen } from '../screens/PassportScreen';
@@ -8,13 +8,6 @@ import { ProfileScreen } from '../screens/ProfileScreen';
 import { theme } from '../theme';
 
 const Tab = createBottomTabNavigator();
-
-const iconByRoute: Record<string, string> = {
-  Home: '🌍',
-  Passport: '📘',
-  Feed: '✨',
-  Profile: '👤',
-};
 
 export const TabsNavigator = () => {
   return (
@@ -33,13 +26,24 @@ export const TabsNavigator = () => {
         tabBarActiveTintColor: theme.colors.accent,
         tabBarInactiveTintColor: '#94a3b8',
         tabBarLabelStyle: { fontWeight: '700', fontSize: 11 },
-        tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 16 }}>{iconByRoute[route.name] ?? '•'}</Text>,
+        tabBarIcon: ({ color, size, focused }) => {
+          if (route.name === 'Home') {
+            return <Ionicons name={focused ? 'compass' : 'compass-outline'} size={size} color={color} />;
+          }
+          if (route.name === 'Passport') {
+            return <MaterialCommunityIcons name={focused ? 'passport' : 'book-open-page-variant'} size={size} color={color} />;
+          }
+          if (route.name === 'Feed') {
+            return <Ionicons name={focused ? 'sparkles' : 'sparkles-outline'} size={size} color={color} />;
+          }
+          return <FontAwesome6 name={focused ? 'user-large' : 'user'} size={size - 2} color={color} />;
+        },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Passport" component={PassportScreen} />
-      <Tab.Screen name="Feed" component={FeedScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Explore' }} />
+      <Tab.Screen name="Passport" component={PassportScreen} options={{ title: 'Passport' }} />
+      <Tab.Screen name="Feed" component={FeedScreen} options={{ title: 'Community' }} />
+      <Tab.Screen name="Profile" component={ProfileScreen} options={{ title: 'You' }} />
     </Tab.Navigator>
   );
 };
