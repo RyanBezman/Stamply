@@ -1,4 +1,4 @@
-import { CityPlace, Stamp } from '../types';
+import { CityPlace } from '../types';
 import { buildCityPrompt } from './promptBuilder';
 
 interface ImageProvider {
@@ -7,15 +7,35 @@ interface ImageProvider {
   regenerateVariant(stampId: string): Promise<string>;
 }
 
+const buildPollinationsUrl = (prompt: string, seed: string) => {
+  const encodedPrompt = encodeURIComponent(prompt);
+  const encodedSeed = encodeURIComponent(seed);
+  return `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&seed=${encodedSeed}&nologo=true`;
+};
+
+export const buildCityPreviewImage = (place: CityPlace) => {
+  if (place.previewImageUrl) {
+    return place.previewImageUrl;
+  }
+
+  const previewPrompt = `cinematic travel postcard of ${place.name}, ${place.country}, iconic skyline and landmarks, moody lighting, premium mobile app background, no text`;
+  return buildPollinationsUrl(previewPrompt, `${place.slug}-preview`);
+};
+
 const mockProvider: ImageProvider = {
   async generateCityStampImage(place) {
-    return `https://picsum.photos/seed/stamply-${place.slug}/900/900`;
+    const prompt = buildCityPrompt(place);
+    return buildPollinationsUrl(prompt, `${place.slug}-stamp`);
   },
   async generateTripRecapImage(trip) {
-    return `https://picsum.photos/seed/trip-${trip.title.replace(/\s+/g, '-')}/1200/700`;
+    const prompt = `premium travel collage, miniature city landmarks, cities: ${trip.cities.join(', ')}, elegant composition, soft cinematic lighting, no text`;
+    return buildPollinationsUrl(prompt, `trip-${trip.title.replace(/\s+/g, '-')}`);
   },
   async regenerateVariant(stampId) {
-    return `https://picsum.photos/seed/variant-${stampId}-${Date.now()}/900/900`;
+    return buildPollinationsUrl(
+      `premium miniature travel diorama, alternate composition, collectible style, no text`,
+      `variant-${stampId}-${Date.now()}`,
+    );
   },
 };
 

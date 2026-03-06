@@ -8,6 +8,7 @@ export interface CityPlace {
   promptSeed: string;
   landmarkKeywords: string[];
   themeKeywords: string[];
+  previewImageUrl?: string;
 }
 
 export interface Stamp {

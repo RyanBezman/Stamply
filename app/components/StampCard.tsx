@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { CityPlace, Stamp } from '../types';
+import { theme } from '../theme';
 
 export const StampCard = ({
   city,
@@ -29,8 +30,16 @@ export const StampCard = ({
 };
 
 const styles = StyleSheet.create({
-  card: { width: '48%', marginBottom: 12 },
-  image: { width: '100%', aspectRatio: 1, borderRadius: 12, backgroundColor: '#1f2937' },
+  card: {
+    width: '48%',
+    marginBottom: 14,
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.radius.md,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    padding: 8,
+  },
+  image: { width: '100%', aspectRatio: 1, borderRadius: 10, backgroundColor: '#1f2937' },
   locked: { alignItems: 'center', justifyContent: 'center' },
   lockedText: { color: '#9ca3af', fontWeight: '700' },
   name: { color: 'white', marginTop: 8, fontWeight: '700' },

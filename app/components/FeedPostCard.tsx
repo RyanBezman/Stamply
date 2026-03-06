@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { FeedPost } from '../types';
+import { theme } from '../theme';
 
 export const FeedPostCard = ({
   post,
@@ -28,7 +29,7 @@ export const FeedPostCard = ({
         <TextInput
           value={text}
           onChangeText={setText}
-          placeholder="Add mock comment"
+          placeholder="Add comment"
           placeholderTextColor="#6b7280"
           style={styles.input}
         />
@@ -47,12 +48,35 @@ export const FeedPostCard = ({
 };
 
 const styles = StyleSheet.create({
-  card: { backgroundColor: '#111827', borderRadius: 14, padding: 14, marginBottom: 12 },
-  text: { color: 'white', fontWeight: '600', fontSize: 16 },
+  card: {
+    backgroundColor: theme.colors.surface,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    padding: 14,
+    marginBottom: 12,
+  },
+  text: { color: 'white', fontWeight: '600', fontSize: 16, lineHeight: 21 },
   meta: { color: '#9ca3af', fontSize: 12, marginTop: 6 },
   row: { flexDirection: 'row', marginTop: 10, gap: 8 },
   commentRow: { flexDirection: 'row', marginTop: 10, gap: 8 },
-  input: { flex: 1, backgroundColor: '#1f2937', color: 'white', borderRadius: 10, paddingHorizontal: 10 },
-  btn: { backgroundColor: '#374151', borderRadius: 10, paddingHorizontal: 10, paddingVertical: 8 },
-  btnText: { color: 'white', fontWeight: '600' },
+  input: {
+    flex: 1,
+    backgroundColor: '#111827',
+    color: 'white',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#1f2937',
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+  },
+  btn: {
+    backgroundColor: '#1f2937',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#334155',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+  btnText: { color: 'white', fontWeight: '700' },
 });
