@@ -2,6 +2,7 @@ import { RouteProp, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useAppStore } from '../hooks/useAppStore';
+import { Skeleton } from '../components/Skeleton';
 import { RootStackParamList } from '../types/navigation';
 import { theme } from '../theme';
 
@@ -30,7 +31,18 @@ export const StampDetailScreen = () => {
 
   return (
     <View style={styles.screen}>
-      {stamp.imageUrl ? <Image source={{ uri: stamp.imageUrl }} style={styles.image} /> : <View style={styles.image} />}
+      {stamp.status === 'generating' ? (
+        <View style={styles.imageWrap}>
+          <Skeleton style={styles.image} />
+          <View style={styles.generatingBadge}>
+            <Text style={styles.generatingText}>Generating stamp image...</Text>
+          </View>
+        </View>
+      ) : stamp.imageUrl ? (
+        <Image source={{ uri: stamp.imageUrl }} style={styles.image} />
+      ) : (
+        <View style={styles.image} />
+      )}
       <Text style={styles.title}>{city.name}</Text>
       <Text style={styles.sub}>{city.country}</Text>
 
@@ -76,7 +88,18 @@ export const StampDetailScreen = () => {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: theme.colors.bg, padding: 16 },
+  imageWrap: { width: '100%', aspectRatio: 0.75, borderRadius: 20, overflow: 'hidden' },
   image: { width: '100%', aspectRatio: 0.75, borderRadius: 20, backgroundColor: '#dbeafe' },
+  generatingBadge: {
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+    backgroundColor: 'rgba(15,23,42,0.85)',
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+  },
+  generatingText: { color: 'white', fontWeight: '700', fontSize: 12 },
   title: { color: theme.colors.text, fontSize: 30, fontWeight: '800', marginTop: 14 },
   sub: { color: '#cbd5e1', fontSize: 18, marginTop: 2 },
   metaBox: {

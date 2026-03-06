@@ -1,8 +1,9 @@
 import React from 'react';
 import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
 import { buildCityPreviewImage } from '../services/imageProvider';
-import { CityPlace, Stamp } from '../types';
 import { theme } from '../theme';
+import { CityPlace, Stamp } from '../types';
+import { Skeleton } from './Skeleton';
 
 export const CityCard = ({
   city,
@@ -20,24 +21,38 @@ export const CityCard = ({
 
   return (
     <View style={styles.card}>
-      <ImageBackground source={{ uri: imageUrl }} style={styles.hero} imageStyle={styles.heroImage}>
-        <View style={styles.overlay} />
-        <View style={styles.topRow}>
-          <Text style={styles.city}>{city.name}</Text>
-          <View style={[styles.badge, unlocked ? styles.badgeReady : styles.badgeLocked]}>
-            <Text style={styles.badgeText}>
-              {unlocked
-                ? stamp?.status === 'ready'
-                  ? 'Unlocked'
-                  : stamp?.status === 'failed'
-                    ? 'Retry needed'
-                    : 'Generating'
-                : 'Locked'}
-            </Text>
+      {stamp?.status === 'generating' ? (
+        <View style={styles.heroWrap}>
+          <Skeleton style={styles.hero} />
+          <View style={styles.overlayGenerating} />
+          <View style={styles.topRowFloating}>
+            <Text style={styles.city}>{city.name}</Text>
+            <View style={[styles.badge, styles.badgeLocked]}>
+              <Text style={styles.badgeText}>Generating</Text>
+            </View>
           </View>
+          <Text style={styles.countryFloating}>{city.country}</Text>
         </View>
-        <Text style={styles.country}>{city.country}</Text>
-      </ImageBackground>
+      ) : (
+        <ImageBackground source={{ uri: imageUrl }} style={styles.hero} imageStyle={styles.heroImage}>
+          <View style={styles.overlay} />
+          <View style={styles.topRow}>
+            <Text style={styles.city}>{city.name}</Text>
+            <View style={[styles.badge, unlocked ? styles.badgeReady : styles.badgeLocked]}>
+              <Text style={styles.badgeText}>
+                {unlocked
+                  ? stamp?.status === 'ready'
+                    ? 'Unlocked'
+                    : stamp?.status === 'failed'
+                      ? 'Retry needed'
+                      : 'Generating'
+                  : 'Locked'}
+              </Text>
+            </View>
+          </View>
+          <Text style={styles.country}>{city.country}</Text>
+        </ImageBackground>
+      )}
 
       <View style={styles.actions}>
         {unlocked ? (
@@ -63,6 +78,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     overflow: 'hidden',
   },
+  heroWrap: {
+    height: 320,
+    position: 'relative',
+    justifyContent: 'space-between',
+    padding: 14,
+  },
   hero: {
     height: 320,
     justifyContent: 'space-between',
@@ -76,11 +97,27 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(255, 255, 255, 0.12)',
   },
+  overlayGenerating: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    borderTopLeftRadius: theme.radius.lg,
+    borderTopRightRadius: theme.radius.lg,
+  },
   topRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     zIndex: 1,
+  },
+  topRowFloating: {
+    position: 'absolute',
+    top: 14,
+    left: 14,
+    right: 14,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    zIndex: 2,
   },
   city: {
     color: '#0f172a',
@@ -94,6 +131,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '700',
     zIndex: 1,
+  },
+  countryFloating: {
+    position: 'absolute',
+    bottom: 14,
+    left: 14,
+    color: '#334155',
+    fontSize: 15,
+    fontWeight: '700',
+    zIndex: 2,
   },
   badge: {
     borderRadius: theme.radius.pill,
