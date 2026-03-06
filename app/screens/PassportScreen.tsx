@@ -1,14 +1,23 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { StampCard } from '../components/StampCard';
 import { useAppStore } from '../hooks/useAppStore';
 import { theme } from '../theme';
 
 export const PassportScreen = () => {
   const navigation = useNavigation<any>();
-  const { cities, stamps } = useAppStore();
+  const { cities, stamps, hydrated } = useAppStore();
   const unlocked = stamps.length;
+
+  if (!hydrated) {
+    return (
+      <View style={styles.loadingWrap}>
+        <ActivityIndicator size="large" color={theme.colors.accent} />
+        <Text style={styles.loadingText}>Loading passport stamps...</Text>
+      </View>
+    );
+  }
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
@@ -31,6 +40,13 @@ export const PassportScreen = () => {
           );
         })}
       </View>
+
+      {unlocked === 0 ? (
+        <View style={styles.emptyCard}>
+          <Text style={styles.emptyTitle}>No stamps yet</Text>
+          <Text style={styles.emptyText}>Go to Home, unlock a city in dev mode, then come back here.</Text>
+        </View>
+      ) : null}
       <View style={{ height: 30 }} />
     </ScrollView>
   );
@@ -63,4 +79,22 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
+  emptyCard: {
+    marginTop: 6,
+    backgroundColor: theme.colors.surface,
+    borderColor: theme.colors.border,
+    borderWidth: 1,
+    borderRadius: theme.radius.md,
+    padding: 12,
+  },
+  emptyTitle: { color: theme.colors.text, fontSize: 16, fontWeight: '800' },
+  emptyText: { color: theme.colors.textMuted, marginTop: 6 },
+  loadingWrap: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.colors.bg,
+    gap: 10,
+  },
+  loadingText: { color: theme.colors.textMuted, fontWeight: '600' },
 });

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { FeedPost } from '../types';
 import { theme } from '../theme';
+import { FeedPost } from '../types';
 
 export const FeedPostCard = ({
   post,
@@ -14,16 +14,34 @@ export const FeedPostCard = ({
 }) => {
   const [text, setText] = useState('');
 
+  const postTypeLabel =
+    post.type === 'trip_recap' ? 'Trip Recap' : post.type === 'milestone' ? 'Milestone' : 'Stamp Unlock';
+
   return (
     <View style={styles.card}>
+      <View style={styles.headerRow}>
+        <Text style={styles.typeBadge}>{postTypeLabel}</Text>
+        <Text style={styles.meta}>{new Date(post.createdAt).toLocaleString()}</Text>
+      </View>
+
       <Text style={styles.text}>{post.text}</Text>
-      <Text style={styles.meta}>{new Date(post.createdAt).toLocaleString()}</Text>
 
       <View style={styles.row}>
         <Pressable style={styles.btn} onPress={onLike}>
           <Text style={styles.btnText}>❤️ {post.likes}</Text>
         </Pressable>
+        <Text style={styles.commentCount}>{post.comments.length} comments</Text>
       </View>
+
+      {post.comments.length > 0 ? (
+        <View style={styles.commentsWrap}>
+          {post.comments.slice(-3).map((comment) => (
+            <View key={comment.id} style={styles.commentItem}>
+              <Text style={styles.commentText}>{comment.text}</Text>
+            </View>
+          ))}
+        </View>
+      ) : null}
 
       <View style={styles.commentRow}>
         <TextInput
@@ -56,9 +74,30 @@ const styles = StyleSheet.create({
     padding: 14,
     marginBottom: 12,
   },
-  text: { color: theme.colors.text, fontWeight: '600', fontSize: 16, lineHeight: 21 },
-  meta: { color: '#9ca3af', fontSize: 12, marginTop: 6 },
-  row: { flexDirection: 'row', marginTop: 10, gap: 8 },
+  headerRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 10 },
+  typeBadge: {
+    backgroundColor: '#e2ecff',
+    color: '#1d4ed8',
+    borderRadius: 999,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    fontWeight: '800',
+    fontSize: 11,
+  },
+  text: { color: theme.colors.text, fontWeight: '600', fontSize: 16, lineHeight: 21, marginTop: 8 },
+  meta: { color: '#9ca3af', fontSize: 12 },
+  row: { flexDirection: 'row', marginTop: 10, gap: 8, alignItems: 'center' },
+  commentCount: { color: theme.colors.textMuted, fontSize: 12, fontWeight: '600' },
+  commentsWrap: { marginTop: 10, gap: 6 },
+  commentItem: {
+    backgroundColor: '#f8fbff',
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+  },
+  commentText: { color: theme.colors.textMuted },
   commentRow: { flexDirection: 'row', marginTop: 10, gap: 8 },
   input: {
     flex: 1,

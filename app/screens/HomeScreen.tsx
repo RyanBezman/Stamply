@@ -1,13 +1,22 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CityCard } from '../components/CityCard';
 import { useAppStore } from '../hooks/useAppStore';
 import { theme } from '../theme';
 
 export const HomeScreen = () => {
   const navigation = useNavigation<any>();
-  const { cities, stamps, unlockCity } = useAppStore();
+  const { cities, stamps, unlockCity, hydrated } = useAppStore();
+
+  if (!hydrated) {
+    return (
+      <View style={styles.loadingWrap}>
+        <ActivityIndicator size="large" color={theme.colors.accent} />
+        <Text style={styles.loadingText}>Loading your passport...</Text>
+      </View>
+    );
+  }
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
@@ -66,4 +75,12 @@ const styles = StyleSheet.create({
   },
   statValue: { color: theme.colors.text, fontSize: 20, fontWeight: '800' },
   statLabel: { color: theme.colors.textMuted, fontSize: 12, marginTop: 4 },
+  loadingWrap: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.colors.bg,
+    gap: 10,
+  },
+  loadingText: { color: theme.colors.textMuted, fontWeight: '600' },
 });
