@@ -1,8 +1,9 @@
 import React from 'react';
-import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { buildCityPreviewImage } from '../services/imageProvider';
 import { theme } from '../theme';
 import { CityPlace, Stamp } from '../types';
+import { FadeInImage } from './FadeInImage';
 import { Skeleton } from './Skeleton';
 
 export const CityCard = ({
@@ -34,9 +35,10 @@ export const CityCard = ({
           <Text style={styles.countryFloating}>{city.country}</Text>
         </View>
       ) : (
-        <ImageBackground source={{ uri: imageUrl }} style={styles.hero} imageStyle={styles.heroImage}>
+        <View style={styles.heroWrap}>
+          <FadeInImage uri={imageUrl} style={styles.heroImage} duration={260} />
           <View style={styles.overlay} />
-          <View style={styles.topRow}>
+          <View style={styles.topRowFloating}>
             <Text style={styles.city}>{city.name}</Text>
             <View style={[styles.badge, unlocked ? styles.badgeReady : styles.badgeLocked]}>
               <Text style={styles.badgeText}>
@@ -50,8 +52,8 @@ export const CityCard = ({
               </Text>
             </View>
           </View>
-          <Text style={styles.country}>{city.country}</Text>
-        </ImageBackground>
+          <Text style={styles.countryFloating}>{city.country}</Text>
+        </View>
       )}
 
       <View style={styles.actions}>
@@ -85,11 +87,15 @@ const styles = StyleSheet.create({
     padding: 14,
   },
   hero: {
-    height: 320,
-    justifyContent: 'space-between',
-    padding: 14,
+    width: '100%',
+    height: '100%',
+    borderTopLeftRadius: theme.radius.lg,
+    borderTopRightRadius: theme.radius.lg,
   },
   heroImage: {
+    ...StyleSheet.absoluteFillObject,
+    width: '100%',
+    height: '100%',
     borderTopLeftRadius: theme.radius.lg,
     borderTopRightRadius: theme.radius.lg,
   },
